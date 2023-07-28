@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import Seo from "../components/Seo";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -6,15 +5,7 @@ import { useRouter } from "next/router";
 export default function Home({ results }) {
   const router = useRouter();
   const onClick = (id, title) => {
-    router.push(
-      {
-        pathname: `/movies/${id}`,
-        query: {
-          title,
-        },
-      },
-      `/movies/${id}`
-    );
+    router.push(`/movies/${title}/${id}`);
   };
   /*   const [movies, setMovies] = useState();
   useEffect(() => {
@@ -39,13 +30,7 @@ export default function Home({ results }) {
         >
           <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} />
           <Link
-            href={{
-              pathname: `/movies/${movie.id}`,
-              query: {
-                title: movie.original_title,
-              },
-            }}
-            as={`/movies/${movie.id}`}
+            href={`/movies/${movie.original_title}/${movie.id}`}
           >
             <a>
               <h4>{movie.original_title}</h4>
